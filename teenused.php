@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="et">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BS1</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet">
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
-    />
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap">
     <style>
       body {
         font-family: "Montserrat", sans-serif;
@@ -91,8 +88,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Enter your search query..."
-                  />
+                    placeholder="Enter your search query...">
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
               </form>
@@ -187,7 +183,7 @@
     // Kui vorm on esitatud
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Funktsioon vormi andmete valideerimiseks
-        function test_input($data) {
+        function testInput($data) {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
@@ -201,25 +197,26 @@
         if (empty($_POST["service_fee"]) || empty($_POST["days"])) {
             $errors = true;
         } else {
-            $service_fee = test_input($_POST["service_fee"]);
-            $days = test_input($_POST["days"]);
+            $service_fee = testInput($_POST["service_fee"]);
+            $days = testInput($_POST["days"]);
         }
 
         if (!empty($_POST["extra"])) {
-            $extra_cost = test_input($_POST["extra"]);
+            $extra_cost = testInput($_POST["extra"]);
         }
 
         if (!$errors) {
-            // Kalkuleeri teenuse maksumus
+            // Kalkuleeri rendi maksumus
             $total_cost = ($service_fee * $days) + $extra_cost;
         } else {
             // Kuvame veateate, kui väljad on täitmata
-            echo '<div class="alert alert-danger mt-3">Palun täitke kõik väljad.</div>';
+            $errorStatus = "danger";
+            $errorMessager="Palun täitke kõik väljad";
         }
     }
     ?>
 
-    <!-- Vorm teenuse kalkuleerimiseks -->
+    <!-- Rendi arvutamine -->
     <form method="post" action="" class="mt-3">
         <div class="form-group">
             <label for="service_fee">Rendi päevahind:</label>
@@ -229,8 +226,7 @@
                 id="service_fee"
                 name="service_fee"
                 value="<?php echo $service_fee; ?>"
-                required
-            />
+                required>
         </div>
         <div class="form-group">
             <label for="days">Päevad:</label>
@@ -240,10 +236,9 @@
                 id="days"
                 name="days"
                 value="<?php echo $days; ?>"
-                required
-            />
+                required/>
         </div>
-        <!-- Lisaelement, näiteks rippmenüü -->
+        <!-- Rippmenüü -->
         <div class="form-group">
             <label for="extra">Lisateenused:</label>
             <select class="form-control" id="extra" name="extra">
