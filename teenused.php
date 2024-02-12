@@ -180,41 +180,43 @@
     <h1 class="mt-5">Rendi auto juba täna!</h1>
 
     <?php
-    // Kui vorm on esitatud
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Funktsioon vormi andmete valideerimiseks
-        function testInput($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-        // Kontrolli, kas sisendväljad on täidetud ja valideeritud
-        $service_fee = $days = $total_cost = $extra_cost = 0;
-        $errors = false;
-
-        if (empty($_POST["service_fee"]) || empty($_POST["days"])) {
-            $errors = true;
-        } else {
-            $service_fee = testInput($_POST["service_fee"]);
-            $days = testInput($_POST["days"]);
-        }
-
-        if (!empty($_POST["extra"])) {
-            $extra_cost = testInput($_POST["extra"]);
-        }
-
-        if (!$errors) {
-            // Kalkuleeri rendi maksumus
-            $total_cost = ($service_fee * $days) + $extra_cost;
-        } else {
-            // Kuvame veateate, kui väljad on täitmata
-            $errorStatus = "danger";
-            $errorMessager="Palun täitke kõik väljad";
-        }
+// Kui vorm on esitatud
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Funktsioon vormi andmete valideerimiseks
+    function testInput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
-    ?>
+
+    // Kontrolli, kas sisendväljad on täidetud ja valideeritud
+    $service_fee = $days = $total_cost = $extra_cost = 0;
+    $errors = false;
+
+    if (empty($_POST["service_fee"]) || empty($_POST["days"]) || $_POST["service_fee"] <= 0 || $_POST["days"] <= 0 || $_POST["extra"] < 0) {
+        $errors = true;
+        // Kuvame veateate, kui mõni väli on täitmata või väiksem kui 0
+        echo '<div class="alert alert-danger" role="alert">Palun täitke kõik väljad sobivate väärtustega (suuremad kui 0).</div>';
+    } elseif (empty($_POST["service_fee"]) || empty($_POST["days"])) {
+        $errors = true;
+        // Kuvame veateate, kui mõni väli on täitmata
+        echo '<div class="alert alert-danger" role="alert">Palun täitke kõik väljad.</div>';
+    } else {
+        $service_fee = testInput($_POST["service_fee"]);
+        $days = testInput($_POST["days"]);
+    }
+
+    if (!empty($_POST["extra"])) {
+        $extra_cost = testInput($_POST["extra"]);
+    }
+
+    if (!$errors) {
+        // Kalkuleeri rendi maksumus
+        $total_cost = ($service_fee * $days) + $extra_cost;
+    }
+}
+?>
 
     <!-- Rendi arvutamine -->
     <form method="post" action="" class="mt-3">
@@ -225,8 +227,8 @@
                 class="form-control"
                 id="service_fee"
                 name="service_fee"
-                value="<?php echo $service_fee; ?>"
-                required>
+                value=""
+                >
         </div>
         <div class="form-group">
             <label for="days">Päevad:</label>
@@ -235,8 +237,8 @@
                 class="form-control"
                 id="days"
                 name="days"
-                value="<?php echo $days; ?>"
-                required/>
+                value=""
+                >
         </div>
         <!-- Rippmenüü -->
         <div class="form-group">
@@ -258,8 +260,7 @@
     </div>
     <?php endif; ?>
 </div>
-
-
+</div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
