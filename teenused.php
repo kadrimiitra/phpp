@@ -164,7 +164,7 @@
                   <a class="nav-link" href="#">Tooted</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="teenused.html">Teenused</a>
+                  <a class="nav-link" href="teenused.php">Teenused</a>
                 </li>
                 <li class="nav-item">
                   <a
