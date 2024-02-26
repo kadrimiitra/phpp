@@ -63,6 +63,16 @@
       .container-text {
         margin-top: 80px;
       }
+      .h1{
+        margin-top:80px;
+      }
+      .profile {
+      margin-bottom: 40px;
+    }
+    .profile img {
+      max-width: 100%;
+      height: auto;
+    }
     </style>
   </head>
   <body>
@@ -179,121 +189,78 @@
           </div>
         </nav>
       </div>
+<h1 class="h1 text-center">Minu oskused</h1>
+      <?php
 
-      <div class="hero">
-        <div class="row row-cols-1 row-cols-md-2 g-2 px-2 m-4">
-          <div class="col">
-            <div class="card h-80">
-              <img src="bs1man.jpg" alt="businessman" />
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <div class="card-body">
-                <h1 class="card-title headers">
-                  Tõestan, et oskan Bootstrappi
-                </h1>
-                <p class="card-text">
-                  Tegelikult oskan täiega HTML, CSS ja Bootstrap APIt. Kahjuks
-                  olen liiga laisk!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+$oskused = ["HTML", "CSS", "Bootstrap", "PHP"];
+$varvid = ["primary", "secondary", "success", "danger", "warning", "info", "dark"];
 
-      <div class="container-text">
-        <div class="row justify-content-center m-4">
-          <div class="col-md-6 text-center">
-            <h1 class="headers">Meie Teenused</h1>
-            <p class="card-text">
-              Otsingu luubil saan klikkida ja kuvatakse hüpikmenüüna
-              otsingukast!
-            </p>
-          </div>
-        </div>
-      </div>
+function getRandomColor($varvid) {
+    $index = array_rand($varvid);
+    return $varvid[$index];
+}
 
-      <div class="container-business m-4">
-        <div class="row m-4">
-          <div class="col-md-4">
-            <div class="card border mb-3 hover h-100">
-              <div class="card-header bg-transparent">
-                <i
-                  class="bi bi-currency-euro text-danger"
-                  style="font-size: 3rem"
-                ></i>
-              </div>
-              <div class="card-body d-flex flex-column">
-                <p class="card-text">Lorem ipsum</p>
-                <h5 class="card-title">Business</h5>
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Atque voluptatum magni voluptatem voluptates! Ratione optio,
-                  sed eos laudantium ipsum deserunt?
-                </p>
-                <button class="btn btn-danger mt-auto small-button">
-                  Loe siit
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card border mb-3 hover h-100">
-              <div class="card-header bg-transparent">
-                <i
-                  class="bi bi-archive-fill text-primary"
-                  style="font-size: 3rem"
-                ></i>
-              </div>
-              <div class="card-body d-flex flex-column">
-                <p class="card-text">Lorem ipsum</p>
-                <h5 class="card-title">Business</h5>
-                <p class="card-text">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Neque vitae blanditiis necessitatibus molestias quas suscipit
-                  tenetur culpa maxime excepturi laudantium?
-                </p>
-                <button class="btn btn-primary mt-auto small-button">
-                  Loe siit
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card border mb-3 hover h-100">
-              <div class="card-header bg-transparent">
-                <i
-                  class="bi bi-hdd-rack text-success"
-                  style="font-size: 3rem"
-                ></i>
-              </div>
-              <div class="card-body d-flex flex-column">
-                <p class="card-text">Lorem ipsum</p>
-                <h5 class="card-title">Business</h5>
-                <p class="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                  voluptate quia cupiditate. Reprehenderit obcaecati tempore
-                  provident neque, rerum accusamus saepe!
-                </p>
-                <button class="btn btn-success mt-auto small-button">
-                  Loe siit
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+echo '<div class="container">';
 
-      <div class="container-text">
-        <div class="row justify-content-center">
-          <div class="col-md-6 text-center">
-            <h1 class="headers">Meie tehtud tööd</h1>
-            <p class="card-text">Seekord pääsesin selliselt</p>
-          </div>
-        </div>
+for ($i = 0; $i < count($oskused); $i++) {
+    $value = rand(10, 100);
+    $varv = getRandomColor($varvid);
+
+    echo '<div class="progress mb-3">';
+    echo '<div class="progress-bar bg-' . $varv . '" role="progressbar" style="width: ' . $value . '%" aria-valuenow="' . $value . '" aria-valuemin="0" aria-valuemax="100">' . $oskused[$i] . '</div>';
+    echo '</div>';
+}
+
+echo '</div>';
+?>
+
+
+
+  <div class="container">
+  <h2 class="text-center h1">Meie töötajad</h2>
+  <div class="row">
+    <?php
+    // Get all files with .jpg extension in the directory
+    $files = glob("pildid/*.jpeg");
+
+    // Predefined names and emails for employees
+    $employees = array(
+        "Devlin" => "devlin@kadri.com",
+        "Freeland" => "freeland@kadri.com",
+        "Gabriel" => "gabriel@kadri.com",
+        "Pete" => "pete@kadri.com",
+        "Peterus" => "peterus@kadri.com",
+        "Prentice" => "prentice@kadri.com"
+      // Add more employees here as needed
+    );
+
+    foreach($files as $file) {
+        // Get file name without extension
+        $filename = pathinfo($file, PATHINFO_FILENAME);
+
+        // Check if email exists for the filename
+        $email = isset($employees[$filename]) ? $employees[$filename] : 'Email not available';
+    ?>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="profile text-center">
+        <img src="<?php echo $file; ?>" alt="<?php echo $filename; ?>" class="img-fluid">
+        <h3><?php echo ucfirst($filename); ?></h3>
+        <!-- Display email if available -->
+        <p>Email: <strong><?php echo $email; ?></strong></p>
       </div>
+    </div>
+    <?php } ?>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
