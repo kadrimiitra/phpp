@@ -220,10 +220,9 @@ echo '</div>';
   <h2 class="text-center h1">Meie töötajad</h2>
   <div class="row">
     <?php
-    // Get all files with .jpg extension in the directory
+  
     $files = glob("pildid/*.jpeg");
 
-    // Predefined names and emails for employees
     $employees = array(
         "Devlin" => "devlin@kadri.com",
         "Freeland" => "freeland@kadri.com",
@@ -231,21 +230,18 @@ echo '</div>';
         "Pete" => "pete@kadri.com",
         "Peterus" => "peterus@kadri.com",
         "Prentice" => "prentice@kadri.com"
-      // Add more employees here as needed
     );
 
     foreach($files as $file) {
-        // Get file name without extension
+        
         $filename = pathinfo($file, PATHINFO_FILENAME);
 
-        // Check if email exists for the filename
         $email = isset($employees[$filename]) ? $employees[$filename] : 'Email not available';
     ?>
     <div class="col-lg-4 col-md-6 col-sm-12">
       <div class="profile text-center">
         <img src="<?php echo $file; ?>" alt="<?php echo $filename; ?>" class="img-fluid">
         <h3><?php echo ucfirst($filename); ?></h3>
-        <!-- Display email if available -->
         <p>Email: <strong><?php echo $email; ?></strong></p>
       </div>
     </div>

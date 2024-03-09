@@ -165,7 +165,7 @@
                 <li class="nav-item">
                   <a
                     class="nav-link"
-                    href="#"
+                    href="kontakt.php"
                     style="background-color: rgb(18, 126, 233); color: #fff"
                     >Kontakt</a
                   >
