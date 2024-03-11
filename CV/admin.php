@@ -10,9 +10,9 @@ $line1 = fgets($file1);
 $data1 = explode("|", $line1);
 fclose($file1);
 
-$uploadDirectory = "uploads/"; // Üleslaaditud piltide kaust
+$uploadDirectory = "uploads/";
 
-$images1 = glob($uploadDirectory . "*.{jpg,jpeg,png,webp,gif}", GLOB_BRACE); // Hangi kõik pildifailid kaustast
+$images1 = glob($uploadDirectory . "*.{jpg,jpeg,png,webp,gif}", GLOB_BRACE);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updated_data1 = $data1;
@@ -43,7 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form method="post" enctype="multipart/form-data">
+
     <label for="myimage">Pilt:</label>
     <select name="myimage" id="myimage">
         <option value="">Vali pilt</option>
@@ -72,9 +73,9 @@ $file2 = fopen("minust.txt", "r") or die("Ei saa faili avada");
 $line2 = fgets($file2);
 $data2 = explode("|", $line2);
 fclose($file2);
-$uploadDirectory = "uploads/"; // Üleslaaditud piltide kaust
+$uploadDirectory = "uploads/";
 
-$images2 = glob($uploadDirectory . "*.{jpg,jpeg,png,webp,gif}", GLOB_BRACE); // Hangi kõik pildifailid kaustast
+$images2 = glob($uploadDirectory . "*.{jpg,jpeg,png,webp,gif}", GLOB_BRACE);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updated_data2 = $data2;
 
@@ -109,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
+<form method="post"  enctype="multipart/form-data">
 <label for="image">Pilt:</label>
     <select name="image" id="image">
         <option value="">Vali pilt</option>
