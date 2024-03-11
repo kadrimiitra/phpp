@@ -25,7 +25,7 @@ include ('header.php');
     </div>
 
     <div class="column">
-        <img src="<?php echo $data[0]; ?>" alt="">
+        <img src="<?php echo $data[0]; ?>" class="rounded-circle" alt="">
     </div>
 </div>
 
@@ -45,7 +45,7 @@ include ('header.php');
 
     ?>
     <div class="columnSecond">
-        <img src="<?php echo $data[0]; ?>" alt="">
+        <img src="<?php echo $data[0]; ?>" class="rounded-circle" alt="">
     </div>
 
     <div class="columnSecond">

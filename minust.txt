@@ -1,1 +1,1 @@
-patrick.webp|Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquam tempora, ea, quis quaerat mollitia reiciendis libero molestias rerum rem magni unde quo inventore in ullam. Quam totam neque debitis.|1+|2+|3
+uploads/spongebob.jpeg|Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aliquam tempora, ea, quis quaerat mollitia reiciendis libero molestias rerum rem magni unde quo inventore in ullam. Quam totam neque debitis.|2+|5+|2
