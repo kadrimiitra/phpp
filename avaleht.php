@@ -5,14 +5,10 @@ include ('header.php');
 <div class="containerFirst">
     <div class="column">
         <?php
-        // Loeme failist andmed
         $file = fopen("tutvustus.txt", "r") or die("Ei saa faili avada");
-        // Loeme failist rea
         $line = fgets($file);
-        // Sulgeme faili
         fclose($file);
 
-        // Jagame rea osadeks
         $data = explode("|", $line);
         ?>
         <h1><?php echo $data[1]; ?></h1>
